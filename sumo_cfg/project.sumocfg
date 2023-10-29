@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Fri 26 Mar 2021 07:53:11 CET by Eclipse SUMO GUI Version 1.4.0
+-->
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="project.net.xml"/>
+        <route-files value="project.rou.xml"/>
+        <additional-files value="project.add.xml"/>
+    </input>
+
+    <time>
+        <begin value="0"/>
+        <end value="10000"/>
+    </time>
+
+    <processing>
+        <time-to-teleport value="-1"/>
+    </processing>
+
+    <traci_server>
+        <remote-port value="46043"/>
+    </traci_server>
+
+    <gui_only>
+        <gui-settings-file value="config_view.xml"/>
+    </gui_only>
+
+</configuration>

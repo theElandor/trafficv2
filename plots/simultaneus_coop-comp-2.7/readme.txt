@@ -1,0 +1,4 @@
+- enh multiplier = 2 always
+- 2 veic pass
+- simult. = True
+- 10 and 12 are NON PLAYERS

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Sun 14 Mar 2021 11:27:47 CET by Eclipse SUMO netedit Version 1.4.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <sumo-net-file value="project.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="project.net.xml"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="false"/>
+    </processing>
+
+    <junctions>
+        <no-internal-links value="true"/>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="0"/>
+        <junctions.limit-turn-speed value="-1"/>
+        <rectangular-lane-cut value="false"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="false"/>
+    </pedestrian>
+
+    <netedit>
+        <route-files value="/home/luca/PycharmProjects/CoordinationAlgorithms/try.rou.xml"/>
+    </netedit>
+
+    <report>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <route edges="edge2-A edgeA-D edgeD-G edgeG-22 edge22-23 edge23-24 edge24-I edgeI-F edgeF-C edgeC-4 edge4-3 edge3-2 edge2-A" color="yellow" id="route_0"/>
+    <route edges="edge24-I edgeI-F edgeF-C edgeC-4 edge4-3 edge3-2 edge2-A edgeA-D edgeD-G edgeG-22 edge22-23 edge23-24 edge24-I" color="red" id="route_1"/>
+    <vehicle id="vehicle_0" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_1" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_10" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_11" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_12" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_13" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_14" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_15" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_16" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_17" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_18" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_19" depart="0.00" color="red" route="route_1"/>
+    <vehicle id="vehicle_2" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_3" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_4" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_5" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_6" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_7" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_8" depart="0.00" route="route_0"/>
+    <vehicle id="vehicle_9" depart="0.00" route="route_0"/>
+</routes>

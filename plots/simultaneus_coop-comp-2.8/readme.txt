@@ -1,0 +1,4 @@
+- enh multiplier = 2 always
+- 2 veic pass
+- simult. = True
+- non_players = ['10', '12', '3', '88', '96']

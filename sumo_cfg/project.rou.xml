@@ -1,0 +1,341 @@
+<routes>
+
+    <!-- Block A -->
+
+    <route id="route0" edges="edge6-A edgeA-B edgeB-C edgeC-10 edge10-15 edge15-20 edge20-I edgeI-H edgeH-G edgeG-16 edge16-11 edge11-6">
+        <stop lane="edge6-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+        <stop lane="edge20-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+    </route>
+
+   <route id="route1" edges="edge2-A edgeA-D edgeD-G edgeG-H edgeH-I edgeI-F edgeF-C edgeC-4 edge4-3 edge3-2">
+       <stop lane="edge2-A_0" duration="20000.0"/>
+       <stop lane="edgeA-D_0" duration="20000.0"/>
+       <stop lane="edgeD-G_0" duration="20000.0"/>
+       <stop lane="edgeG-H_0" duration="20000.0"/>
+       <stop lane="edgeH-I_0" duration="20000.0"/>
+       <stop lane="edgeI-F_0" duration="20000.0"/>
+       <stop lane="edgeF-C_0" duration="20000.0"/>
+   </route>
+
+   <route id="route2" edges="edgeD-A edgeA-2 edge2-3 edge3-4 edge4-C edgeC-F edgeF-I edgeI-24 edge24-23 edge23-22 edge22-G edgeG-D">
+       <stop lane="edgeD-A_0" duration="20000.0"/>
+       <stop lane="edge4-C_0" duration="20000.0"/>
+       <stop lane="edgeC-F_0" duration="20000.0"/>
+       <stop lane="edgeF-I_0" duration="20000.0"/>
+       <stop lane="edge22-G_0" duration="20000.0"/>
+       <stop lane="edgeG-D_0" duration="20000.0"/>
+   </route>
+
+   <route id="route3" edges="edgeB-A edgeA-6 edge6-11 edge11-16 edge16-G edgeG-H edgeH-I edgeI-F edgeF-C edgeC-B">
+       <stop lane="edgeB-A_0" duration="20000.0"/>
+       <stop lane="edge16-G_0" duration="20000.0"/>
+       <stop lane="edgeG-H_0" duration="20000.0"/>
+       <stop lane="edgeH-I_0" duration="20000.0"/>
+       <stop lane="edgeI-F_0" duration="20000.0"/>
+       <stop lane="edgeF-C_0" duration="20000.0"/>
+       <stop lane="edgeC-B_0" duration="20000.0"/>
+   </route>
+
+    <!-- Block B -->
+
+    <route id="route4" edges="edgeA-B edgeB-C edgeC-10 edge10-15 edge15-20 edge20-I edgeI-H edgeH-G edgeG-16 edge16-11 edge11-6 edge6-A">
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+        <stop lane="edge20-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+        <stop lane="edge6-A_0" duration="20000.0"/>
+    </route>
+
+    <route id="route5" edges="edge3-B edgeB-E edgeE-H edgeH-23 edge23-22 edge22-21 edge21-16 edge16-11 edge11-6 edge6-1 edge1-2 edge2-3">
+        <stop lane="edge3-B_0" duration="20000.0"/>
+        <stop lane="edgeB-E_0" duration="20000.0"/>
+        <stop lane="edgeE-H_0" duration="20000.0"/>
+    </route>
+
+    <route id="route6" edges="edgeC-B edgeB-A edgeA-D edgeD-G edgeG-H edgeH-I edgeI-20 edge20-15 edge15-10 edge10-C">
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edgeA-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+        <stop lane="edge10-C_0" duration="20000.0"/>
+    </route>
+
+    <route id="route7" edges="edgeE-B edgeB-3 edge3-2 edge2-1 edge1-6 edge6-11 edge11-16 edge16-21 edge21-22 edge22-23 edge23-H edgeH-E">
+        <stop lane="edgeE-B_0" duration="20000.0"/>
+        <stop lane="edge23-H_0" duration="20000.0"/>
+        <stop lane="edgeH-E_0" duration="20000.0"/>
+    </route>
+
+    <!-- Block C -->
+
+    <route id="route8" edges="edgeB-C edgeC-F edgeF-I edgeI-H edgeH-G edgeG-16 edge16-11 edge11-6 edge6-A edgeA-B">
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+        <stop lane="edgeC-F_0" duration="20000.0"/>
+        <stop lane="edgeF-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+        <stop lane="edge6-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+    </route>
+
+    <route id="route9" edges="edge4-C edgeC-F edgeF-I edgeI-24 edge24-23 edge23-22 edge22-21 edge21-16 edge16-11 edge11-6 edge6-1 edge1-2 edge2-3 edge3-4">
+        <stop lane="edge4-C_0" duration="20000.0"/>
+        <stop lane="edgeC-F_0" duration="20000.0"/>
+        <stop lane="edgeF-I_0" duration="20000.0"/>
+    </route>
+
+    <route id="route10" edges="edge10-C edgeC-B edgeB-A edgeA-D edgeD-G edgeG-H edgeH-I edgeI-20 edge20-15 edge15-10">
+        <stop lane="edge10-C_0" duration="20000.0"/>
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edgeA-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+    </route>
+
+    <route id="route11" edges="edgeF-C edgeC-4 edge4-3 edge3-2 edge2-A edgeA-D edgeD-G edgeG-H edgeH-I edgeI-F">
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edge2-A_0" duration="20000.0"/>
+        <stop lane="edgeA-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+    </route>
+
+    <!-- Block D -->
+
+    <route id="route12" edges="edge11-D edgeD-E edgeE-F edgeF-15 edge15-20 edge20-I edgeI-H edgeH-G edgeG-16 edge16-11">
+        <stop lane="edge11-D_0" duration="20000.0"/>
+        <stop lane="edgeD-E_0" duration="20000.0"/>
+        <stop lane="edgeE-F_0" duration="20000.0"/>
+        <stop lane="edge20-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+    </route>
+
+    <route id="route13" edges="edgeA-D edgeD-G edgeG-H edgeH-I edgeI-F edgeF-C edgeC-4 edge4-3 edge3-2 edge2-A">
+        <stop lane="edgeA-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edge2-A_0" duration="20000.0"/>
+    </route>
+
+    <route id="route14" edges="edgeE-D edgeD-G edgeG-22 edge22-23 edge23-24 edge24-25 edge25-20 edge20-15 edge15-F edgeF-E">
+        <stop lane="edgeE-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+        <stop lane="edge15-F_0" duration="20000.0"/>
+        <stop lane="edgeF-E_0" duration="20000.0"/>
+    </route>
+
+    <route id="route15" edges="edgeG-D edgeD-A edgeA-B edgeB-E edgeE-H edgeH-23 edge23-22 edge22-G">
+        <stop lane="edgeG-D_0" duration="20000.0"/>
+        <stop lane="edgeD-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-E_0" duration="20000.0"/>
+        <stop lane="edgeE-H_0" duration="20000.0"/>
+        <stop lane="edge22-G_0" duration="20000.0"/>
+    </route>
+
+    <!-- Block E -->
+
+    <route id="route16" edges="edgeD-E edgeE-F edgeF-I edgeI-H edgeH-G edgeG-16 edge16-11 edge11-D">
+        <stop lane="edgeD-E_0" duration="20000.0"/>
+        <stop lane="edgeE-F_0" duration="20000.0"/>
+        <stop lane="edgeF-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+        <stop lane="edge11-D_0" duration="20000.0"/>
+    </route>
+
+    <route id="route17" edges="edgeB-E edgeE-H edgeH-I edgeI-F edgeF-C edgeC-4 edge4-3 edge3-B">
+        <stop lane="edgeB-E_0" duration="20000.0"/>
+        <stop lane="edgeE-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edge3-B_0" duration="20000.0"/>
+    </route>
+
+    <route id="route18" edges="edgeF-E edgeE-D edgeD-11 edge11-6 edge6-1 edge1-2 edge2-3 edge3-4 edge4-5 edge5-10 edge10-15 edge15-F">
+        <stop lane="edgeF-E_0" duration="20000.0"/>
+        <stop lane="edgeE-D_0" duration="20000.0"/>
+        <stop lane="edge15-F_0" duration="20000.0"/>
+    </route>
+
+    <route id="route19" edges="edgeH-E edgeE-B edgeB-A edgeA-6 edge6-11 edge11-16 edge16-21 edge21-22 edge22-23 edge23-H">
+        <stop lane="edgeH-E_0" duration="20000.0"/>
+        <stop lane="edgeE-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edge23-H_0" duration="20000.0"/>
+    </route>
+
+    <!-- Block F -->
+
+    <route id="route20" edges="edgeE-F edgeF-C edgeC-B edgeB-A edgeA-6 edge6-11 edge11-D edgeD-E">
+        <stop lane="edgeE-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edge11-D_0" duration="20000.0"/>
+        <stop lane="edgeD-E_0" duration="20000.0"/>
+    </route>
+
+    <route id="route21" edges="edgeC-F edgeF-I edgeI-24 edge24-23 edge23-22 edge22-G edgeG-D edgeD-A edgeA-B edgeB-C">
+        <stop lane="edgeC-F_0" duration="20000.0"/>
+        <stop lane="edgeF-I_0" duration="20000.0"/>
+        <stop lane="edge22-G_0" duration="20000.0"/>
+        <stop lane="edgeG-D_0" duration="20000.0"/>
+        <stop lane="edgeD-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+    </route>
+
+    <route id="route22" edges="edge15-F edgeF-E edgeE-D edgeD-G edgeG-22 edge22-23 edge23-24 edge24-25 edge25-20 edge20-15">
+        <stop lane="edge15-F_0" duration="20000.0"/>
+        <stop lane="edgeF-E_0" duration="20000.0"/>
+        <stop lane="edgeE-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+    </route>
+
+    <route id="route23" edges="edgeI-F edgeF-C edgeC-4 edge4-3 edge3-2 edge2-A edgeA-D edgeD-G edgeG-H edgeH-I">
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edge2-A_0" duration="20000.0"/>
+        <stop lane="edgeA-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+    </route>
+
+    <!-- Block G -->
+
+    <route id="route24" edges="edge16-G edgeG-H edgeH-I edgeI-F edgeF-C edgeC-B edgeB-A edgeA-6 edge6-11 edge11-16">
+        <stop lane="edge16-G_0" duration="20000.0"/>
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+    </route>
+
+    <route id="route25" edges="edgeD-G edgeG-22 edge22-23 edge23-24 edge24-I edgeI-F edgeF-C edgeC-B edgeB-A edgeA-D">
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+        <stop lane="edge24-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edgeA-D_0" duration="20000.0"/>
+    </route>
+
+    <route id="route26" edges="edgeH-G edgeG-D edgeD-A edgeA-B edgeB-C edgeC-10 edge10-15 edge15-20 edge20-I edgeI-H">
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+        <stop lane="edgeG-D_0" duration="20000.0"/>
+        <stop lane="edgeD-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+        <stop lane="edge20-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+    </route>
+
+    <route id="route27" edges="edge22-G edgeG-D edgeD-A edgeA-B edgeB-C edgeC-F edgeF-I edgeI-24 edge24-23 edge23-22">
+        <stop lane="edge22-G_0" duration="20000.0"/>
+        <stop lane="edgeG-D_0" duration="20000.0"/>
+        <stop lane="edgeD-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+        <stop lane="edgeC-F_0" duration="20000.0"/>
+        <stop lane="edgeF-I_0" duration="20000.0"/>
+    </route>
+
+    <!-- Block H -->
+
+    <route id="route28" edges="edgeG-H edgeH-I edgeI-F edgeF-C edgeC-B edgeB-A edgeA-6 edge6-11 edge11-16 edge16-G">
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edge16-G_0" duration="20000.0"/>
+    </route>
+
+    <route id="route29" edges="edgeE-H edgeH-23 edge23-22 edge22-21 edge21-16 edge16-11 edge11-6 edge6-A edgeA-B edgeB-E">
+        <stop lane="edgeE-H_0" duration="20000.0"/>
+        <stop lane="edge6-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-E_0" duration="20000.0"/>
+    </route>
+
+    <route id="route30" edges="edgeI-H edgeH-G edgeG-D edgeD-A edgeA-B edgeB-C edgeC-10 edge10-15 edge15-20 edge20-I">
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+        <stop lane="edgeG-D_0" duration="20000.0"/>
+        <stop lane="edgeD-A_0" duration="20000.0"/>
+        <stop lane="edgeA-B_0" duration="20000.0"/>
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+        <stop lane="edge20-I_0" duration="20000.0"/>
+    </route>
+
+    <route id="route31" edges="edge23-H edgeH-E edgeE-B edgeB-C edgeC-10 edge10-15 edge15-20 edge20-25 edge25-24 edge24-23">
+        <stop lane="edge23-H_0" duration="20000.0"/>
+        <stop lane="edgeH-E_0" duration="20000.0"/>
+        <stop lane="edgeE-B_0" duration="20000.0"/>
+        <stop lane="edgeB-C_0" duration="20000.0"/>
+    </route>
+
+    <!-- Block I -->
+
+    <route id="route32" edges="edgeH-I edgeI-F edgeF-C edgeC-B edgeB-A edgeA-6 edge6-11 edge11-16 edge16-G edgeG-H">
+        <stop lane="edgeH-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edge16-G_0" duration="20000.0"/>
+        <stop lane="edgeG-H_0" duration="20000.0"/>
+    </route>
+
+    <route id="route33" edges="edgeF-I edgeI-H edgeH-G edgeG-D edgeD-A edgeA-2 edge2-3 edge3-4 edge4-C edgeC-F">
+        <stop lane="edgeF-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+        <stop lane="edgeG-D_0" duration="20000.0"/>
+        <stop lane="edgeD-A_0" duration="20000.0"/>
+        <stop lane="edge4-C_0" duration="20000.0"/>
+        <stop lane="edgeC-F_0" duration="20000.0"/>
+    </route>
+
+    <route id="route34" edges="edge20-I edgeI-H edgeH-G edgeG-D edgeD-E edgeE-F edgeF-15 edge15-20">
+        <stop lane="edge20-I_0" duration="20000.0"/>
+        <stop lane="edgeI-H_0" duration="20000.0"/>
+        <stop lane="edgeH-G_0" duration="20000.0"/>
+        <stop lane="edgeG-D_0" duration="20000.0"/>
+        <stop lane="edgeD-E_0" duration="20000.0"/>
+        <stop lane="edgeE-F_0" duration="20000.0"/>
+    </route>
+
+    <route id="route35" edges="edge24-I edgeI-F edgeF-C edgeC-B edgeB-A edgeA-D edgeD-G edgeG-22 edge22-23 edge23-24">
+        <stop lane="edge24-I_0" duration="20000.0"/>
+        <stop lane="edgeI-F_0" duration="20000.0"/>
+        <stop lane="edgeF-C_0" duration="20000.0"/>
+        <stop lane="edgeC-B_0" duration="20000.0"/>
+        <stop lane="edgeB-A_0" duration="20000.0"/>
+        <stop lane="edgeA-D_0" duration="20000.0"/>
+        <stop lane="edgeD-G_0" duration="20000.0"/>
+    </route>
+
+</routes>

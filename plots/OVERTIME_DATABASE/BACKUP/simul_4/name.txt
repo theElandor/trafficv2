@@ -1,0 +1,1 @@
+{'simul': True, 'multiplier': 2, 'crossing_cars': 2, 'congestion_rate': True, 'spawn_rate': 2, 'simulation_index': '4'}

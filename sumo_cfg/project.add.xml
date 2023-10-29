@@ -1,0 +1,47 @@
+<additionals>
+	<!--
+    <rerouter id="rerouter_00" edges="edge1C">
+        <interval end="1e9">
+            <destProbReroute id="edge23"/>
+        </interval>
+    </rerouter>
+    <rerouter id="rerouter_01" edges="edge23">
+		<interval end="1e9">
+		   <destProbReroute id="edge1C"/>
+		</interval>
+	</rerouter>
+
+    <rerouter id="rerouter_10" edges="edge4C">
+		<interval end="1e9">
+		   <destProbReroute id="edge32"/>
+		</interval>
+	</rerouter>
+    <rerouter id="rerouter_11" edges="edge32">
+		<interval end="1e9">
+		   <destProbReroute id="edge4C"/>
+		</interval>
+	</rerouter>
+
+    <rerouter id="rerouter_20" edges="edge3C">
+		<interval end="1e9">
+		   <destProbReroute id="edge41"/>
+		</interval>
+	</rerouter>
+    <rerouter id="rerouter_21" edges="edge41">
+		<interval end="1e9">
+		   <destProbReroute id="edge3C"/>
+		</interval>
+	</rerouter>
+
+    <rerouter id="rerouter_30" edges="edge2C">
+		<interval end="1e9">
+		   <destProbReroute id="edge14"/>
+		</interval>
+	</rerouter>
+    <rerouter id="rerouter_31" edges="edge14">
+		<interval end="1e9">
+		   <destProbReroute id="edge2C"/>
+		</interval>
+	</rerouter>
+	-->
+</additionals>
