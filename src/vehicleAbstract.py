@@ -4,12 +4,13 @@ from src.utils import *
 from src.vehiclesDict import VehiclesDict
 import random
 import time
+import numpy as np
 '''
     Abstract class of a generic vehicle, to be expanded and customized for different models
 '''
 class VehicleAbstract(abc.ABC):
 
-    def __init__(self, id, settings):
+    def __init__(self, id, settings, variable_pool):
         self.id = id
         self.settings = settings
         self.route = traci.vehicle.getRoute(id)
@@ -17,9 +18,11 @@ class VehicleAbstract(abc.ABC):
         self.managedLanes = []
         self.gained_money = 0
         self.total_reroutes = 0
+        self.variable_pool = variable_pool # not ideal
+        # to decrease memusage move beta initialization in init function    
+        upper_bound = int(settings['UB'])
         test_veic = settings['TV']
-        upper_bound = settings['UB']
-
+        
         self.waitedTimes = defaultdict(list)
         self.traffic_waited_times = defaultdict(list)
         self.traffic_waiting_time = 0
@@ -28,14 +31,33 @@ class VehicleAbstract(abc.ABC):
         self.crossroad_waiting_time = 0
         VehiclesDict.addVehicle(self)
         # uncomment following line to slow down vehicles
-        if self.id == test_veic:
-            traci.vehicle.setMaxSpeed(self.id, 4)
-        else:
-            speed = random.randint(4, upper_bound)
-            traci.vehicle.setMaxSpeed(self.id, speed)
+        self.initialize_speed(test_veic, variable_pool, upper_bound)
+        self.initialize_beta()
+        
     def __str__(self):
         return "Vehicle " + self.getID()
 
+    def initialize_speed(self, test_veic, variable_pool, upper_bound):
+        speed = 4
+        if self.id == test_veic:
+            traci.vehicle.setMaxSpeed(self.id, speed)
+        else:
+            if self.id in variable_pool:  # speed is random across simulations
+                speed = random.randint(4, upper_bound)
+            else:  # speed is a function of the id so it is fixed across simulations
+                speed = (int(self.id) % (upper_bound-4+1)+4)
+        traci.vehicle.setMaxSpeed(self.id, speed)
+    
+    def initialize_beta(self):
+        self.beta = self.settings['Spn'] * 0.01
+        UB = int((self.settings['betaU'])*100)
+        LB = int((self.settings['betaL'])*100)
+        if self.settings['TV'] != self.getID():
+            if self.getID() in self.variable_pool:
+                self.beta = (random.choice([i for i in range(LB, UB+1)]))/100
+            else:  # beta is function of id so does not change overtime
+                self.beta = (int(self.getID()) % (UB-LB+1)+LB)/100
+        print("debug beta, veic {} beta {}".format(self.id, str(self.beta)))
     def reroute(self):
         """
         reroute check and eventually reassign route to a vehicle dependently on setting chosen (static or dynamic)

@@ -59,6 +59,7 @@ if __name__ == '__main__':
                 if currentArgument in ("-f", "--file"):
                     print("file to read: {}".format(currentValue))
                     file_to_read = currentValue
+                    test.append(currentValue)
                 elif currentArgument in ("-z", "--zoom"):
                     print("applied zoom: {}".format(currentValue))
                     zoom = int(currentValue)

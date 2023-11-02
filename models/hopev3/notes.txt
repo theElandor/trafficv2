@@ -1,0 +1,47 @@
+configuration file
+
+# Standard configs
+model: Coop
+CP: owp
+MCA: 1
+E: y
+Bdn: b
+Rts: f
+RUNS: 1
+TV: 74
+
+# Simulation settings
+Stp: 200000
+VS: 120
+UB: 7
+RS: 40
+
+
+# Startup configuration
+train: True
+load: False
+name: train
+MV: hopev2
+AI: 1
+
+#sponsorship policy
+Spn: 10
+betaL: 0.05
+betaU: 0.15
+betaR: 0.1
+
+# hyperparameters
+alpha: 0.3
+TF: 10
+UF: 10
+EXE: 1
+EVE: 0
+BS: 32
+G: 0.3
+
+so now each stable vehicle has fixed beta and speed among all the simualations.
+There is also a pool of random vehicles (40% of total) that are initialzied
+with a random behaviour, so with random speed and beta
+This is needed to add noise in the training phase.
+
+--> need to redo experiments with standard behaviour.

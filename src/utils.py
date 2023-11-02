@@ -40,7 +40,7 @@ def read_config():
 
     os.system('clear')
     print(pt)
-    selector = 1
+    selector = 0
     pt.clear()
 
     files_to_read = []
@@ -377,7 +377,7 @@ def retrieveCrossroadsNames():
     crossroad_pattern = r"^(?!:)[ABCDEFGHI].*"
     for c in traci.junction.getIDList():
         if re.match(crossroad_pattern, c):
-            crossroads_names.add(c)    
+            crossroads_names.add(c)
     return crossroads_names
 
 
@@ -411,6 +411,12 @@ def infrastructureRetrieving(crossroad_names):
 
 #offset is needed when vehicles are spawned overtime,
 #to see changes according to traffic flow.
+def createPool(settings):
+    total = settings['VS']
+    percentage = settings['RS']  # random spawn
+    variable_pool = [str(i) for i in range(1, int(total*(percentage/100)))]
+    return variable_pool
+
 def spawnCars(settings, routes, offset=0):
     """
     Spawn the requested cars into the scenario
@@ -419,13 +425,14 @@ def spawnCars(settings, routes, offset=0):
     :return: dictionary of 'Vehicle' instances, labeled with given ID
     """
     cars_to_spawn = settings['VS']
+    variable_pool = createPool(settings)
     congestion = True
     for i in range(cars_to_spawn):
         # print("Spawning car: " + str(i+offset))
         traci.vehicle.add(str(i+offset), routes[(i+offset) % len(routes)])
         traci.simulationStep()
         if settings['model'] == 'Comp' or settings['model'] == 'Coop':
-            VehicleCA(str(i+offset), settings)
+            VehicleCA(str(i+offset), settings, variable_pool)
         if settings['model'] == 'EB':
             VehicleEB(str(i), settings, congestion)
         if settings['model'] == 'DA':

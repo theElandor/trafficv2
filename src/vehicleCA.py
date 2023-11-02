@@ -11,18 +11,7 @@ class VehicleCA(VehicleAuction):
         :return:
         sponsorship randomly picked, according to set sponsorship percentage
         """
-        # base model sampled between 0 and beta, now it's deterministic.
-        # each car will have a different beta though.
-        # each vehicle has a R% prob of chosing a random beta
-        beta = self.settings['Spn'] * 0.01
-        UB = int((self.settings['betaU'])*100)
-        LB = int((self.settings['betaL'])*100)
-        R = self.settings['betaR']
-        if self.settings['TV'] != self.getID():
-            if np.random.rand() <= R:
-                beta = (random.choice([i for i in range(LB, UB+1)]))/100
-                # print("RANDOM BETA: {}".format(str(beta)))
-            else:
-                beta = (int(self.getID()) % (UB-LB+1)+LB)/100
-        # print("veic = {} beta = {}".format(self.getID(), beta))
-        return int(self.getBudget() * beta)
+        # now the random beta is not a thing anymore. Every vehicle can have either
+        # a fixed policy among all simulations or a random one. The random consists
+        # in initializing a beta randomly in the given range
+        return int(self.getBudget() * self.beta)

@@ -1,0 +1,50 @@
+TRAINING CONFIGURATIONS
+# Standard configs
+model: Coop
+CP: owp
+MCA: 1
+E: y
+Bdn: b
+Rts: f
+RUNS: 1
+TV: 74
+
+# Simulation settings
+Stp: 200000
+VS: 120
+UB: 7
+
+# Startup configuration
+train: True
+load: False
+name: train
+MV: hopev2
+AI: 1
+
+#sponsorship policy
+Spn: 10
+betaL: 0.05
+betaU: 0.15
+betaR: 0.1
+
+# hyperparameters
+alpha: 0.3
+TF: 10
+UF: 10
+EXE: 1
+EVE: 0
+BS: 32
+G: 0.3
+
+
+1 --> b = 0.07 speed = random
+2 --> b = 0.08 speed = random
+3 --> b = 0.09 speed = random
+.
+.
+.
+74 --> b = 0.10 speed = random
+.
+.
+.
+120 --> b = 0.14 speed = random

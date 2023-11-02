@@ -20,9 +20,9 @@ import matplotlib
 # of the bidder and of the random bidder.
 
 width = 0.5
-data_120 = pd.read_csv("compared_exp/average_120B/random_gained_data.txt")
-data_130 = pd.read_csv("compared_exp/average_130B/random_gained_data.txt")
-data_140 = pd.read_csv("compared_exp/average_140B/random_gained_data.txt")
+data_120 = pd.read_csv("compared_exp/average_120T/random_gained_data.txt")
+data_130 = pd.read_csv("compared_exp/average_130T/random_gained_data.txt")
+data_140 = pd.read_csv("compared_exp/average_140T/random_gained_data.txt")
 print(data_120)
 matplotlib.use('TkAgg')
 

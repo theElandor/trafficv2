@@ -59,7 +59,9 @@ def testSaveDir(settings):
     paths = [path, compared_path, final_path]
     for p in paths:
         if not os.path.exists(p):
-            c = input("{} destination folder does not exist. Do you want to create it now? (y/n)".format(p))
+            # uncomment for input confirmation
+            # c = input("{} destination folder does not exist. Do you want to create it now? (y/n)".format(p))
+            c = "y"
             if c == "y":
                 os.mkdir(p)
             else:
@@ -126,7 +128,7 @@ def run(settings, model_chosen, chunk_name=0, time = datetime.now().strftime("%Y
             with open("qlearn_data/"+str(settings['VS'])+"/gained_"+str(model.simulationName)+".txt", "w") as t:
                 t.write(str(model.trained_veic.gained_money)+"\n")
                 t.write(str(model.trained_veic.total_reroutes)+"\n")
-            if str(model.simulationName) != "random":
+            if str(model.simulationName) != "off":
                 with open("models/{}/compared_exp/average_{}T/{}/gained_{}.txt".format(settings['MV'], str(settings['VS']), str(settings['AI']), str(model.simulationName)), "w") as f:
                     f.write(str(model.trained_veic.gained_money)+"\n")
                     f.write(str(model.trained_veic.total_reroutes)+"\n")
@@ -155,31 +157,31 @@ def sim(configs, chunk_name=0, time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S
             f.write(' ')
     file_name += '|{}'
 
-    data_file = 'data/' + file_name
-    df_waiting_times.to_csv(data_file.format('global') + '.txt', index_label=False, index=False)
-    cross_total.to_csv(data_file.format('cross-total') + '.txt', index_label=False)
-    traffic_total.to_csv(data_file.format('traffic-total') + '.txt', index_label=False)
-    crossroads_wt.to_csv(data_file.format('crossroads') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
-    traffic_wt.to_csv(data_file.format('traffic') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
+    # data_file = 'data/' + file_name
+    # df_waiting_times.to_csv(data_file.format('global') + '.txt', index_label=False, index=False)
+    # cross_total.to_csv(data_file.format('cross-total') + '.txt', index_label=False)
+    # traffic_total.to_csv(data_file.format('traffic-total') + '.txt', index_label=False)
+    # crossroads_wt.to_csv(data_file.format('crossroads') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
+    # traffic_wt.to_csv(data_file.format('traffic') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
     
-    crossroad_vehicles.to_csv('./qlearn_data/'+str(configs['VS'])+'/crossroad_'+str(simulationName)+'.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
-    traffic_vehicles.to_csv('./qlearn_data/'+str(configs['VS'])+'/traffic_'+str(simulationName)+'.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
+    # crossroad_vehicles.to_csv('./qlearn_data/'+str(configs['VS'])+'/crossroad_'+str(simulationName)+'.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
+    # traffic_vehicles.to_csv('./qlearn_data/'+str(configs['VS'])+'/traffic_'+str(simulationName)+'.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
 
     crossroad_vehicles.to_csv("./models/{}/compared_exp/average_{}T/{}/crossroad_{}.txt".format(configs['MV'], str(configs['VS']), str(configs['AI']), str(simulationName)),header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
-    traffic_vehicles.to_csv("./models/{}/compared_exp/average_{}T/{}/traffic_{}.txt".format(configs['MV'], str(configs['VS']), str(configs['AI']), str(simulationName)),header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])    
+    traffic_vehicles.to_csv("./models/{}/compared_exp/average_{}T/{}/traffic_{}.txt".format(configs['MV'], str(configs['VS']), str(configs['AI']), str(simulationName)),header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
 
-    crossroad_vehicles.to_csv(data_file.format('crossroad-vehicles') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
-    traffic_vehicles.to_csv(data_file.format('traffic-vehicles') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
+    # crossroad_vehicles.to_csv(data_file.format('crossroad-vehicles') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
+    # traffic_vehicles.to_csv(data_file.format('traffic-vehicles') + '.txt', header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
     
     print(OKGREEN + f'Raw data written in data/{chunk_name}[{time}]{configs["model"]}|*.txt' + ENDC)
 
-    if chunk_name == 0:
-        # NOTE: there is a problem for subsequent processes trying to plot theirs results, they quit from 'sim' and don't put results in queue
-        # Plots are of the first run
-        plot(crossroads_wt, 'Crossroads', 'Average crossroad waiting time for each crossroad', file_name.format('crossroads') + '.png')
-        plot(traffic_wt, 'Crossroads', 'Average traffic waiting time for each crossroad', file_name.format('traffic') + '.png')
-        plot(crossroad_vehicles, 'Cars', 'Average crossroad waiting time of each car', file_name.format('crossroad-vehicles') + '.png')
-        plot(traffic_vehicles, 'Cars', 'Average traffic waiting time of each car', file_name.format('traffic-vehicles') + '.png')
+    # if chunk_name == 0:
+    #     # NOTE: there is a problem for subsequent processes trying to plot theirs results, they quit from 'sim' and don't put results in queue
+    #     # Plots are of the first run
+    #     plot(crossroads_wt, 'Crossroads', 'Average crossroad waiting time for each crossroad', file_name.format('crossroads') + '.png')
+    #     plot(traffic_wt, 'Crossroads', 'Average traffic waiting time for each crossroad', file_name.format('traffic') + '.png')
+    #     plot(crossroad_vehicles, 'Cars', 'Average crossroad waiting time of each car', file_name.format('crossroad-vehicles') + '.png')
+    #     plot(traffic_vehicles, 'Cars', 'Average traffic waiting time of each car', file_name.format('traffic-vehicles') + '.png')
 
     '''
     cross_total['mean'] = 0 if math.isnan(cross_total['mean']) else cross_total['mean']
@@ -202,39 +204,52 @@ if __name__ == '__main__':
     lock = multiprocessing.Lock()
     extra_configs = {'simul':False, 'multiplier':1, 'crossing_rate':6,'crossing_cars':1, 'congestion_rate':True, 'spawn_rate':1, 'simulation_index':"1"}
     # DEBUG: uncomment below line when testing with EB
-    for settings in configs:
-        settings['TV'] = str(settings['TV'])
-        if not testSaveDir(settings):
-            break
+    parallel = 5
+    chunks = [configs[x:x+parallel] for x in range(0, len(configs), parallel)]
+    for c in chunks:  # c is new configs
         processes = []
         time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
-
-        for i in range(int(settings["RUNS"])):
-            p =multiprocessing.Process(target=sim, args=(settings, i, time, f'/usr/bin/{sumo}', lock, q, extra_configs)) # run simulations with "sim" function
+        for i, settings in enumerate(c):
+            settings['TV'] = str(settings['TV'])
+            if not testSaveDir(settings):
+                break
+            p =multiprocessing.Process(target=sim, args=(settings, i, time, f'/usr/bin/{sumo}', lock, q, extra_configs))  # run simulations with "sim" function
             p.start()
             processes.append(p)
-
         for p in processes:
             p.join()
-        # Writes the output
-        if int(settings['RUNS']) > 1:
-            file_name = f'[MULTIRUN_{time}]' + settings['model']
-            for s in settings.keys():
-                if s not in excluded_settings:
-                    file_name += '_' + s + ':' + str(settings[s])
-            file_name += '|{}'
-            cwt_file = open('data/' + file_name.format('cross-total') + '.txt', 'w')
-            twt_file = open('data/' + file_name.format('traffic-total') + '.txt', 'w')
-            # Note that you have to call Queue.get() for each item you want to return.
-            while not q.empty():
-                cwt = q.get()
-                twt = q.get()
-                cwt_file.write(str(cwt)+'\n')
-                twt_file.write(str(twt)+'\n')
-            cwt_file.close()
-            twt_file.close()
-            print(f'Cumulative results of runs saved as {file_name}')
-            counter += 1
-            print(f"Chunk {counter}/{len(configs)} finished")
+
+    # for settings in configs:  # configs is a list of dictionaries
+    #     settings['TV'] = str(settings['TV'])
+    #     if not testSaveDir(settings):
+    #         break
+    #     processes = []
+    #     time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")        
+    #     for i in range(int(settings["RUNS"])):
+    #         p =multiprocessing.Process(target=sim, args=(settings, i, time, f'/usr/bin/{sumo}', lock, q, extra_configs))  # run simulations with "sim" function
+    #         p.start()
+    #         processes.append(p)
+    #     for p in processes:
+    #         p.join()
+    #     # Writes the output
+    #     if int(settings['RUNS']) > 1:
+    #         file_name = f'[MULTIRUN_{time}]' + settings['model']
+    #         for s in settings.keys():
+    #             if s not in excluded_settings:
+    #                 file_name += '_' + s + ':' + str(settings[s])
+    #         file_name += '|{}'
+    #         cwt_file = open('data/' + file_name.format('cross-total') + '.txt', 'w')
+    #         twt_file = open('data/' + file_name.format('traffic-total') + '.txt', 'w')
+    #         # Note that you have to call Queue.get() for each item you want to return.
+    #         while not q.empty():
+    #             cwt = q.get()
+    #             twt = q.get()
+    #             cwt_file.write(str(cwt)+'\n')
+    #             twt_file.write(str(twt)+'\n')
+    #         cwt_file.close()
+    #         twt_file.close()
+    #         print(f'Cumulative results of runs saved as {file_name}')
+    #         counter += 1
+    #         print(f"Chunk {counter}/{len(configs)} finished")
 
     print("All done")

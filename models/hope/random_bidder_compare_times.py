@@ -22,9 +22,9 @@ import numpy as np
 # of the test vehicle (each bar corresponds to a different number of vehicles on the map).
 
 matplotlib.use('TkAgg')
-data_120 = pd.read_csv("compared_exp/average_120B/evaluation_data.txt")
-data_130 = pd.read_csv("compared_exp/average_130B/evaluation_data.txt")
-data_140 = pd.read_csv("compared_exp/average_140B/evaluation_data.txt")
+data_120 = pd.read_csv("compared_exp/average_120T/evaluation_data.txt")
+data_130 = pd.read_csv("compared_exp/average_130T/evaluation_data.txt")
+data_140 = pd.read_csv("compared_exp/average_140T/evaluation_data.txt")
 
 data = {
     'traffic': np.array([data_120.iloc[0,0], data_120.iloc[1,0], data_130.iloc[0,0], data_130.iloc[1,0], data_140.iloc[0,0], data_140.iloc[1,0]]),
