@@ -45,3 +45,10 @@ with a random behaviour, so with random speed and beta
 This is needed to add noise in the training phase.
 
 --> need to redo experiments with standard behaviour.
+----------------- POST EXPERIMENTS --------------
+there is to much variability, the model is to simple to handle that.
+Still need to figure out how the gains go from 70% down to 20% even for the small
+variability. Will probably train another model with less variability on the speed
+to check if that is the problem.
+
+

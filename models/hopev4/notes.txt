@@ -1,0 +1,3 @@
+this model will be trained the same way as hopev3 but
+with RS = 20. So there's much less variability in the pool
+of simulated vehicles.

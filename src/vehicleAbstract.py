@@ -33,7 +33,8 @@ class VehicleAbstract(abc.ABC):
         # uncomment following line to slow down vehicles
         self.initialize_speed(test_veic, variable_pool, upper_bound)
         self.initialize_beta()
-        
+
+
     def __str__(self):
         return "Vehicle " + self.getID()
 
@@ -47,7 +48,7 @@ class VehicleAbstract(abc.ABC):
             else:  # speed is a function of the id so it is fixed across simulations
                 speed = (int(self.id) % (upper_bound-4+1)+4)
         traci.vehicle.setMaxSpeed(self.id, speed)
-    
+
     def initialize_beta(self):
         self.beta = self.settings['Spn'] * 0.01
         UB = int((self.settings['betaU'])*100)
@@ -58,6 +59,7 @@ class VehicleAbstract(abc.ABC):
             else:  # beta is function of id so does not change overtime
                 self.beta = (int(self.getID()) % (UB-LB+1)+LB)/100
         print("debug beta, veic {} beta {}".format(self.id, str(self.beta)))
+        
     def reroute(self):
         """
         reroute check and eventually reassign route to a vehicle dependently on setting chosen (static or dynamic)
@@ -154,9 +156,7 @@ class VehicleAbstract(abc.ABC):
 
     def getRouteIndex(self):
         return traci.vehicle.getRouteIndex(self.id)
-
     
-
     """
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     CrossroadWaitingTime section
