@@ -1,0 +1,10 @@
+This model will be trained the same as
+hopev2 but without the random speed factor, meaning
+that the speed of the vehicles will all be assigned
+following a function of the index (like in hopev3 and hopev4)
+The variable pool is 0%, recreating the same setting
+as hopev2 but with variable speed but not random speed.
+-----------AFTER TEST-------------
+the simulations with the bidder are the identical because
+there is 0 variance, all of the vehicles around the test
+vehicle behave exactly the same.

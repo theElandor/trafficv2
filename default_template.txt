@@ -12,7 +12,7 @@ TV: 74
 Stp: {}
 VS: {}
 UB: 7
-RS: 40
+RS: {}
 
 
 # Startup configuration

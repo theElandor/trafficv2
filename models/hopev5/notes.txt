@@ -1,0 +1,8 @@
+After the flop with hope2_2, there is the
+need of some variance in the simulation.
+Let's add a 10% variance among the simulated vehicles.
+Basically we are recreating the hopev3 and hopev4 scenario but
+with a 10% variance among vehicles.
+------------IDEA-------------
+far cambiare scenario durante il training
+per verificare che il bidder prova ad adattarsi.

@@ -1,3 +1,7 @@
 this model will be trained the same way as hopev3 but
 with RS = 20. So there's much less variability in the pool
 of simulated vehicles.
+
+Gains are really good, times are slightly higher for the
+bidder with respect to the random bidder. In 140 vehicles
+bot the times and the gains are really good for the random bidder.

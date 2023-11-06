@@ -4,16 +4,16 @@ import sys
 # create_files(vehicles, model, template, duration, )
 
 
-def create_files(vehicles, model, template, duration):
+def create_files(vehicles, model, template, duration, random_percentage):
     with open(template, "r") as t:
         template = t.read()
     for v in vehicles:  # VS
         for i in range(1, 11):  # AI
             # need to create one for booster and one for random
             with open("configs/Comp/{}{}_{}.yml".format(str(v), "B", str(i)), "w") as booster_config:
-                booster_config.write(template.format(str(duration), str(v), "booster", model, str(i), "0"))
+                booster_config.write(template.format(str(duration), str(v),str(random_percentage), "booster", model, str(i), "0"))
             with open("configs/Comp/{}{}_{}.yml".format(str(v), "R", str(i)), "w") as random_config:
-                random_config.write(template.format(str(duration), str(v), "random", model, str(i), "1"))
+                random_config.write(template.format(str(duration), str(v),str(random_percentage) ,"random", model, str(i), "1"))
 
 
 if __name__ == '__main__':
@@ -22,12 +22,12 @@ if __name__ == '__main__':
     model = "hope"
     template = "default_template.txt"
     duration = 5000
+    random_percentage = 40
     argumentList = sys.argv[1:]
     # Options
     options = "hmo:"
     # Long options
-    # need to do name, ai
-    long_options = ["help", "template=", "MV=", "VS=", "Stp=", ]
+    long_options = ["help", "template=", "MV=", "VS=", "Stp=", "RS=", ]
     try:
         # Parsing argument
         arguments, values = getopt.getopt(argumentList, options, long_options)
@@ -42,6 +42,7 @@ if __name__ == '__main__':
                 print("--MV=<str> to specifiy model version, default:hope.")
                 print("--VS=<int> to specify number of vehicles. default: 120, 130, 140.")
                 print("--Stp=<int> to specify experiment duration. default:5000.")
+                print("--Rs=<int> to specify random pool percentage. default:40.")
             else:
                 if currentArgument in ("-t", "--template"):
                     print("selected template: {}".format(currentValue))
@@ -62,7 +63,13 @@ if __name__ == '__main__':
                         duration = int(currentValue)
                     except ValueError:
                         print("Invalid number of vehicles. Exiting")
-        create_files(vehicles, model, template, duration)
+                elif currentArgument in ("-r", "--RS"):
+                    print("selected random pool percentage: {}%".format(currentValue))
+                    try:
+                        random_percentage = int(currentValue)
+                    except ValueError:
+                        print("Invalid percentage. Exiting")
+        create_files(vehicles, model, template, duration, random_percentage)
     except getopt.error as err:
         # output error, and return with an error code
         print(str(err))

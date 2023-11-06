@@ -55,11 +55,11 @@ if __name__ == '__main__':
                 print("--zoom=<zoom value> to specifiy zoom. default=1")
                 print("--gran=<gran value> to specifiy granularity value. default=100")
                 print("--mode=<mode> to specifiy plotting style. default=--bo")
+                break
             else:
                 if currentArgument in ("-f", "--file"):
                     print("file to read: {}".format(currentValue))
                     file_to_read = currentValue
-                    test.append(currentValue)
                 elif currentArgument in ("-z", "--zoom"):
                     print("applied zoom: {}".format(currentValue))
                     zoom = int(currentValue)
