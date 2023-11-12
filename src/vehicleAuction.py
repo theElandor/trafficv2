@@ -3,9 +3,9 @@ from src.vehicleAbstract import *
 
 class VehicleAuction(VehicleAbstract):
 
-    def __init__(self, id, settings, variable_pool, budget=100):
+    def __init__(self, id, settings, variable_pool):
         super().__init__(id, settings, variable_pool)
-        self.budget = int(budget)
+        self.budget = self.max_budget
         self.crossroad_counter = self.countCrossroads()
         self.lazy_refill = False
 
