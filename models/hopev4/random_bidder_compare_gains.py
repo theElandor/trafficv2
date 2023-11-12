@@ -1,7 +1,10 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 import matplotlib
+
+
 # REQUIRMENTS (needs to be generalized):
 # ./average_120B
 # ./average_130B
@@ -18,29 +21,29 @@ import matplotlib
 
 # the scripts produces a barplot that compares the amount of gained money
 # of the bidder and of the random bidder.
-
-width = 0.5
-data_120 = pd.read_csv("compared_exp/average_120T/random_gained_data.txt")
-data_130 = pd.read_csv("compared_exp/average_130T/random_gained_data.txt")
-data_140 = pd.read_csv("compared_exp/average_140T/random_gained_data.txt")
-print(data_120)
 matplotlib.use('TkAgg')
-
-# veics = ("120B, 120R", "130B, 130R", "140B, 140R")
-veics = (120,130,140)
+width = 0.5
+data = []
+directory = './compared_exp'
+averages = sorted(os.listdir(directory), key=lambda dirname : int(dirname[8:-1]))
+print(averages)
+for a in averages:
+    data.append(pd.read_csv("compared_exp/{}/random_gained_data.txt".format(a)))
+vars = sorted([int(s[8:-1]) for s in averages])  # veics
 means = {
-    'BidderV1': (round(data_120.iloc[0, 0], 2), round(data_130.iloc[0, 0], 2), round(data_140.iloc[0, 0],2)),
-    'Random': (round(data_120.iloc[1, 0],2), round(data_130.iloc[1, 0],2), round(data_140.iloc[1, 0],2)),
+    'Bidder': tuple([round(x.iloc[0,0],2) for x in data]),
+
+    'Random': tuple([round(x.iloc[1,0],2) for x in data])
 }
 errors = {
-    'BidderV1': (round(data_120.iloc[0, 1],2), round(data_130.iloc[0, 1],2), round(data_140.iloc[0, 1], 2)),
-    'Random': (round(data_120.iloc[1, 1],2), round(data_130.iloc[1, 1],2), round(data_140.iloc[1, 1],2)),
+    'Bidder': tuple([round(x.iloc[0,1],2) for x in data]),
+    'Random': tuple([round(x.iloc[1,1],2) for x in data])
 }
 colors = {
-    'BidderV1': "yellowgreen",
+    'Bidder': "yellowgreen",
     'Random': "greenyellow"
 }
-x = np.arange(len(veics))  # the label locations
+x = np.arange(len(vars))  # the label locations
 width = 0.25  # the width of the bars
 multiplier = 0
 
@@ -49,15 +52,15 @@ fig, ax = plt.subplots(layout='constrained')
 for attribute, measurement in means.items():
     offset = width * multiplier
     rects = ax.bar(x + offset, measurement, width, label=attribute, color=colors[attribute], yerr=errors[attribute])
-    ax.bar_label(rects, fmt='{:,.2f}%',padding=3)
+    ax.bar_label(rects, fmt='{:,.0f}%', padding=3)
     multiplier += 1
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
-ax.set_ylabel('Valuta media risparmiata')
-ax.set_xlabel('Numero di veicoli')
-ax.set_title('Valuta risparmiata, Bidder(B) e Random(R)')
-ax.set_xticks(x+width/2, labels = ['120B, 120R', '130B,130R', '140B, 140R'])
-ax.legend(loc='upper left', ncols=3)
+ax.set_ylabel('Saved currency')
+ax.set_xlabel('Initial budget')
+ax.set_title('Saved currency based on test vehicle initial budget')
+ax.set_xticks(x+width/2, labels = ['{}'.format(str(d)) for d in vars])
+ax.legend(loc='upper left', ncols=1)
 ax.set_ylim(0, 100)
-
-plt.savefig("output.png")
+plt.savefig("gained.png")
+plt.show()

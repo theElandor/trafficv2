@@ -9,20 +9,22 @@ RUNS: 1
 TV: 74
 
 # Simulation settings
+Vr: B
 Stp: 5000
-VS: 140
+VS: 120
 UB: 7
-RS: 10
+RS: 40
 
 
 # Startup configuration
 train: False
 load: True
 name: booster
-MV: hopev5
+MV: hopev4
 AI: 3
 
 #sponsorship policy
+B: 140
 Spn: 10
 betaL: 0.05
 betaU: 0.15

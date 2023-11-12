@@ -19,10 +19,14 @@ class VehicleAbstract(abc.ABC):
         self.gained_money = 0
         self.total_reroutes = 0
         self.variable_pool = variable_pool # not ideal
+        
         # to decrease memusage move beta initialization in init function    
         upper_bound = int(settings['UB'])
         test_veic = settings['TV']
-        
+        if self.id == test_veic:
+            self.max_budget = settings['B']
+        else:
+            self.max_budget = 100
         self.waitedTimes = defaultdict(list)
         self.traffic_waited_times = defaultdict(list)
         self.traffic_waiting_time = 0
@@ -72,7 +76,7 @@ class VehicleAbstract(abc.ABC):
         rer = -1
         if current_edge == self.route[rer]: # do stuff only if reroute is necessary
             try:
-                delta = 100 - self.budget
+                delta = self.max_budget - self.budget
                 with open('reroute.txt', "a") as r:
                     r.write(str(delta) + "\n")
                 current_road = traci.vehicle.getRoadID(self.getID())
@@ -80,7 +84,7 @@ class VehicleAbstract(abc.ABC):
                     self.lazy_refill = True
                 else:
                     self.gained_money += self.getBudget()
-                    self.setBudget(100)
+                    self.setBudget(self.max_budget)
                 self.total_reroutes += 1
             except:
                 print("Rerouted veic " + self.id + " without refilling budget\n")

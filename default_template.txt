@@ -9,6 +9,7 @@ RUNS: 1
 TV: 74
 
 # Simulation settings
+Vr: {}
 Stp: {}
 VS: {}
 UB: 7
@@ -23,6 +24,7 @@ MV: {}
 AI: {}
 
 #sponsorship policy
+B: {}
 Spn: 10
 betaL: 0.05
 betaU: 0.15

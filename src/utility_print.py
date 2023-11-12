@@ -15,7 +15,7 @@ ENDC = '\033[0m'  # De-select the current color
 BOLD = '\033[1m'
 UNDERLINE = '\033[4m'
 
-def log_file_initialization(chunk_name, settings, model_chosen, listener, time):
+def log_file_initialization(chunk_name, settings, model_chosen, listener, time, excluded_settings):
     """
         A globally accessible log file is created to record details of simulation
         :param chunk_name: if 'main.py' is called from outside ('main_multi') the an identifier is used to distinct log files, otherwise, it's omitted
@@ -26,7 +26,8 @@ def log_file_initialization(chunk_name, settings, model_chosen, listener, time):
     file_name = f'logs/{chunk_name}[' + time + ']' + model_chosen
 
     for s in settings.keys():
-        file_name += '_' + s + ':' + str(settings[s])
+        if s not in excluded_settings:
+            file_name += '_' + s + ':' + str(settings[s])
     log_file = open(file_name + '.txt', "w")
 
     for s in settings.keys():

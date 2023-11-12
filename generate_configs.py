@@ -4,30 +4,57 @@ import sys
 # create_files(vehicles, model, template, duration, )
 
 
-def create_files(vehicles, model, template, duration, random_percentage):
+def create_files(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var):
     with open(template, "r") as t:
         template = t.read()
-    for v in vehicles:  # VS
-        for i in range(1, 11):  # AI
-            # need to create one for booster and one for random
-            with open("configs/Comp/{}{}_{}.yml".format(str(v), "B", str(i)), "w") as booster_config:
-                booster_config.write(template.format(str(duration), str(v),str(random_percentage), "booster", model, str(i), "0"))
-            with open("configs/Comp/{}{}_{}.yml".format(str(v), "R", str(i)), "w") as random_config:
-                random_config.write(template.format(str(duration), str(v),str(random_percentage) ,"random", model, str(i), "1"))
-
+    #this code sooner or later needs to be refactored
+    if var == 'VS':
+        for v in vehicles_list:  # VS
+            for i in range(1, 11):  # AI
+                # need to create one for booster and one for random
+                with open("configs/Comp/{}{}_{}.yml".format(str(v), "B", str(i)), "w") as booster_config:
+                    booster_config.write(template.format(var, str(duration), str(v), str(random_percentage), "booster", model, str(i), budget, "0"))
+                with open("configs/Comp/{}{}_{}.yml".format(str(v), "R", str(i)), "w") as random_config:
+                    random_config.write(template.format(var, str(duration), str(v), str(random_percentage) , "random", model, str(i), budget, "1"))
+    elif var == 'RS':
+        for r in random_percentage_list:  # VS
+            for i in range(1, 11):  # AI
+                # need to create one for booster and one for random
+                with open("configs/Comp/{}{}_{}.yml".format(str(r), "B", str(i)), "w") as booster_config:
+                    booster_config.write(template.format(var, str(duration), str(vehicles), str(r), "booster", model, str(i), budget, "0"))
+                with open("configs/Comp/{}{}_{}.yml".format(str(r), "R", str(i)), "w") as random_config:
+                    random_config.write(template.format(var, str(duration), str(vehicles), str(r) ,"random", model, str(i), budget, "1"))
+    elif var == 'B':
+        for b in budget_list:  # VS
+            for i in range(1, 11):  # AI
+                # need to create one for booster and one for random
+                with open("configs/Comp/{}{}_{}.yml".format(str(b), "B", str(i)), "w") as booster_config:
+                    booster_config.write(template.format(var, str(duration), str(vehicles), str(random_percentage), "booster", model, str(i), str(b) ,"0"))
+                with open("configs/Comp/{}{}_{}.yml".format(str(b), "R", str(i)), "w") as random_config:
+                    random_config.write(template.format(var, str(duration), str(vehicles), str(random_percentage), "random", model, str(i), str(b) ,"1"))
+    else:
+        print("Unexpected error during configuration file generation")
 
 if __name__ == '__main__':
     # default values
-    vehicles = []
+    vehicles = 120
     model = "hope"
     template = "default_template.txt"
     duration = 5000
     random_percentage = 40
+    budget = 100
+    var = 'VS'
+    supported_variables = ['VS', 'Rs', 'B']
+
+    vehicles_list = []
+    random_percentage_list = []
+    budget_list = []
+
     argumentList = sys.argv[1:]
     # Options
     options = "hmo:"
     # Long options
-    long_options = ["help", "template=", "MV=", "VS=", "Stp=", "RS=", ]
+    long_options = ["help", "template=", "MV=", "VS=", "Stp=", "RS=", "B=",]
     try:
         # Parsing argument
         arguments, values = getopt.getopt(argumentList, options, long_options)
@@ -42,21 +69,28 @@ if __name__ == '__main__':
                 print("--MV=<str> to specifiy model version, default:hope.")
                 print("--VS=<int> to specify number of vehicles. default: 120, 130, 140.")
                 print("--Stp=<int> to specify experiment duration. default:5000.")
-                print("--Rs=<int> to specify random pool percentage. default:40.")
+                print("--RS=<int> to specify random pool percentage. default:40.")
+                print("--B=<int> to specify the starting budget of the test vehicle. default:100.")
+                print("The script currently supports the following commands:")
+                print("1) Use --VS=100, --VS=110, ... to run simulations where the number of vehicles varies.")
+                print("2) Use --RS=10, --RS=15, ... to run simulations where the size of the random pool varies.")
+                print("2) Use --B=80, --RS=90, ... to run simulations where the budget of the test vehicle varies.")
+                print("Warning: please do not use any of the previous options in the same command.")
+                print("The output will be written in the configuration folder.")
             else:
                 if currentArgument in ("-t", "--template"):
                     print("selected template: {}".format(currentValue))
                     template = currentValue
                 elif currentArgument in ("-m", "--MV"):
                     print("selected model: {}".format(currentValue))
-                    model = currentValue
+                    model = currentValue                    
                 elif currentArgument in ("-v", "--VS"):
                     print("number of vehicles: {}".format(currentValue))
                     try:
-                        vehicles.append(int(currentValue))
+                        vehicles_list.append(int(currentValue))
                     except ValueError:
                         print("Invalid number of vehicles. Exiting")
-                        exit()
+                        sys.exit()
                 elif currentArgument in ("-d", "--Stp"):
                     print("selected duration: {}".format(currentValue))
                     try:
@@ -67,9 +101,26 @@ if __name__ == '__main__':
                     print("selected random pool percentage: {}%".format(currentValue))
                     try:
                         random_percentage = int(currentValue)
+                        random_percentage_list.append(random_percentage)
                     except ValueError:
                         print("Invalid percentage. Exiting")
-        create_files(vehicles, model, template, duration, random_percentage)
+                elif currentArgument in ("-b", "--B"):
+                    print("selected starting budget: {}".format(currentValue))
+                    try:
+                        budget = int(currentValue)
+                        budget_list.append(budget)
+                    except ValueError:
+                        print("Invalid budget found. Exiting")                        
+        if len(random_percentage_list) > 1:
+            print("multiple random percentages have been selected. Considering Rs as the variable.")
+            var = 'RS'
+        elif len(vehicles_list) > 1:
+            print("multiple vehicles have been selected. Considering VS as the variable.")
+            var = 'VS'
+        elif len(budget_list) > 1:
+            print("multiple budget values have been selected. Considering B as the variable.")
+            var = 'B'
+        create_files(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var)
     except getopt.error as err:
         # output error, and return with an error code
         print(str(err))
