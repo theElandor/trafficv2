@@ -127,10 +127,9 @@ def run(settings, model_chosen, chunk_name=0, time = datetime.now().strftime("%Y
         var = settings['Vr']
         folder_name = str(settings[var])
         if model.test_veic != "?":
-            if str(model.simulationName) != "off":
-                with open("models/{}/compared_exp/average_{}T/{}/gained_{}.txt".format(settings['MV'], folder_name, str(settings['AI']), str(model.simulationName)), "w") as f:
-                    f.write(str(model.trained_veic.gained_money)+"\n")
-                    f.write(str(model.trained_veic.total_reroutes)+"\n")
+            with open("models/{}/compared_exp/average_{}T/{}/gained_{}.txt".format(settings['MV'], folder_name, str(settings['AI']), str(model.simulationName)), "w") as f:
+                f.write(str(model.trained_veic.gained_money)+"\n")
+                f.write(str(model.trained_veic.total_reroutes)+"\n")
                     
     except traci.exceptions.FatalTraCIError:
         print("Saving manager brain....")
@@ -177,7 +176,7 @@ def sim(configs, chunk_name=0, time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S
 if __name__ == '__main__':
     excluded_settings = ['model', 'CP', 'MCA', 'E', 'Bdn', 'Rts', 'RUNS']
     initialize_files()
-    configs = read_config()    
+    configs = read_config()
     print("Need to run {} simulations. Estimated time: {} hours.".format(len(configs), str("%02d:%02d" % (divmod((len(configs)*6)/5, 60)))))
     sumo = input('Graphical Interface [y/N]: ')
     sumo = 'sumo-gui' if sumo == 'y' or sumo == 'Y' else 'sumo'

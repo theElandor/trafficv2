@@ -33,6 +33,10 @@ class VehicleAuction(VehicleAbstract):
             current_index = self.managedLanes.index(current_road)
             rem = self.crossroad_counter-current_index
             to_bid = self.getBudget()/rem
+            if self.getID() == '74':
+                print("rem: {}".format(rem))
+                print("budget: {}".format(self.getBudget()))
+                print("bidding: {}".format(to_bid))
             return to_bid
         else:
             return randint(0, int(self.getBudget()))

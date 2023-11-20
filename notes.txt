@@ -1,0 +1,6 @@
+notes,
+
++ tried to compare bidder with nobidder with 30 and 100
+  budget, but with bad results. I tested everything
+  with hopev4_2, now trying with  hopev4 (plain).
+

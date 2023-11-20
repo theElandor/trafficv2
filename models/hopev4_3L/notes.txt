@@ -1,0 +1,5 @@
+trained the same way as hopev4_3 but with
+400k iterations instead of 200k.
+Indeed, it looks like 200k is not enough with this much
+variability, so it is worth making a test with
+a longer training phase.

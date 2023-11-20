@@ -9,11 +9,11 @@ RUNS: 1
 TV: 74
 
 # Simulation settings
-Vr: B
+Vr: VS
 Stp: 5000
-VS: 120
+VS: 100
 UB: 7
-RS: 40
+RS: 20
 
 
 # Startup configuration

@@ -5,6 +5,7 @@ from src.vehiclesDict import VehiclesDict
 import random
 import time
 import numpy as np
+from termcolor import colored
 '''
     Abstract class of a generic vehicle, to be expanded and customized for different models
 '''
@@ -35,14 +36,17 @@ class VehicleAbstract(abc.ABC):
         self.crossroad_waiting_time = 0
         VehiclesDict.addVehicle(self)
         # uncomment following line to slow down vehicles
-        self.initialize_speed(test_veic, variable_pool, upper_bound)
+        self.initialize_speed()
         self.initialize_beta()
 
 
     def __str__(self):
         return "Vehicle " + self.getID()
 
-    def initialize_speed(self, test_veic, variable_pool, upper_bound):
+    def initialize_speed(self):
+        test_veic = self.settings['TV']
+        variable_pool = self.variable_pool
+        upper_bound = self.settings['UB']
         speed = 4
         if self.id == test_veic:
             traci.vehicle.setMaxSpeed(self.id, speed)
@@ -51,6 +55,7 @@ class VehicleAbstract(abc.ABC):
                 speed = random.randint(4, upper_bound)
             else:  # speed is a function of the id so it is fixed across simulations
                 speed = (int(self.id) % (upper_bound-4+1)+4)
+        self.speed = speed
         traci.vehicle.setMaxSpeed(self.id, speed)
 
     def initialize_beta(self):
@@ -74,7 +79,7 @@ class VehicleAbstract(abc.ABC):
         """
         current_edge = self.getRoadID()
         rer = -1
-        if current_edge == self.route[rer]: # do stuff only if reroute is necessary
+        if current_edge == self.route[rer]:  # do stuff only if reroute is necessary
             try:
                 delta = self.max_budget - self.budget
                 with open('reroute.txt', "a") as r:
@@ -83,17 +88,21 @@ class VehicleAbstract(abc.ABC):
                 if current_road == self.managedLanes[-1]:
                     self.lazy_refill = True
                 else:
+                    print("rerouting with {}".format(self.getBudget()))
                     self.gained_money += self.getBudget()
                     self.setBudget(self.max_budget)
                 self.total_reroutes += 1
             except:
                 print("Rerouted veic " + self.id + " without refilling budget\n")
-            if self.settings['Rts'] == 'f': # statitc case
+            if self.settings['Rts'] == 'f':  # statitc case
                 self.route = self.route[rer::] + self.route[:rer:]
+                if self.settings['train']:
+                    self.initialize_speed()
+                    self.initialize_beta()
                 if not self.lazy_refill:
                     self.managedLanes = [item for item in self.route if item in self.managedLanes]
                 pass
-            else: # dynamic case
+            else:  # dynamic case
                 if self.getID() == '70':
                     route_length = len(self.route)
                     self.route = [current_edge]

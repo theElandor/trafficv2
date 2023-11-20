@@ -75,7 +75,6 @@ class IntersectionManager:
     
     def sortBids(self, bids, sponsors):
         bids = list(reversed(sorted(bids, key=itemgetter(1))))
-        #bids[0] = winner
         winner = bids[0][0]
         winner_total_bid = bids[0][1]
         winner_bid = bids[0][2] - sponsors[winner]

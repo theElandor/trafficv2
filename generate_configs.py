@@ -4,7 +4,7 @@ import sys
 # create_files(vehicles, model, template, duration, )
 
 
-def create_files(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var):
+def create_files_random(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var):
     with open(template, "r") as t:
         template = t.read()
     #this code sooner or later needs to be refactored
@@ -35,6 +35,25 @@ def create_files(vehicles, budget, vehicles_list, model, template, duration, ran
     else:
         print("Unexpected error during configuration file generation")
 
+def create_files_nobidder(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var, no_bidder_budget):
+    """
+    We still use "random" as filename so we don't have to change the plotter script.
+    A more appr. script would be "off"
+    """
+    with open(template, "r") as t:
+        template = t.read()
+    if var == 'VS':
+        for v in vehicles_list:  # VS
+            for i in range(1, 11):  # AI
+                # need to create one for booster and one for nobidder
+                with open("configs/Comp/{}{}_{}.yml".format(str(v), "B", str(i)), "w") as booster_config:                    
+                    booster_config.write(template.format(var, str(duration), str(v), str(random_percentage), "booster", model, str(i), budget, "0"))
+                with open("configs/Comp/{}{}_{}.yml".format(str(v), "R", str(i)), "w") as random_config:
+                    random_config.write(template.format(var, str(duration), str(v), str(random_percentage) , "disabled", model, str(i), no_bidder_budget, "1"))
+    else:
+        print("{} is currently not a supported variable in this mode.".format(var))
+        return
+
 if __name__ == '__main__':
     # default values
     vehicles = 120
@@ -44,7 +63,11 @@ if __name__ == '__main__':
     random_percentage = 40
     budget = 100
     var = 'VS'
+    compare_to = 'random'
+    no_bidder_budget = None
+    
     supported_variables = ['VS', 'Rs', 'B']
+    supported_b = ['random', 'nobidder']
 
     vehicles_list = []
     random_percentage_list = []
@@ -54,7 +77,7 @@ if __name__ == '__main__':
     # Options
     options = "hmo:"
     # Long options
-    long_options = ["help", "template=", "MV=", "VS=", "Stp=", "RS=", "B=",]
+    long_options = ["help", "template=", "MV=", "VS=", "Stp=", "RS=", "B=", "CT=", "NBB="]
     try:
         # Parsing argument
         arguments, values = getopt.getopt(argumentList, options, long_options)
@@ -70,6 +93,10 @@ if __name__ == '__main__':
                 print("--VS=<int> to specify number of vehicles. default: 120, 130, 140.")
                 print("--Stp=<int> to specify experiment duration. default:5000.")
                 print("--RS=<int> to specify random pool percentage. default:40.")
+                print("--B=<int> to specify the starting budget of the test vehicle. default:100.")
+                print("--CT=<string> to specify the behaviour compared to thew bidder. default: random")
+                print("--NBB=<int> to specify the starting budget of the vehicle in case of nobidder.")
+                print("If you want to compare to random, there is no need to specify this parameter.")
                 print("--B=<int> to specify the starting budget of the test vehicle. default:100.")
                 print("The script currently supports the following commands:")
                 print("1) Use --VS=100, --VS=110, ... to run simulations where the number of vehicles varies.")
@@ -104,13 +131,29 @@ if __name__ == '__main__':
                         random_percentage_list.append(random_percentage)
                     except ValueError:
                         print("Invalid percentage. Exiting")
+                elif currentArgument in ("--CT"):
+                    print("selected compared behaviour: {}".format(currentValue))
+                    if currentValue in supported_b:
+                        compare_to = currentValue
+                    else:
+                        print("selected compared behaviour is not valid. Exiting")
+                        sys.exit()
+                elif currentArgument in ("--NBB"):
+                    print("selected nobidder starting budet: {}".format(currentValue))
+                    try:
+                        no_bidder_budget = int(currentValue)
+                    except ValueError:
+                        print("Invalid no bidder starting budget selected. Exiting")
                 elif currentArgument in ("-b", "--B"):
                     print("selected starting budget: {}".format(currentValue))
                     try:
                         budget = int(currentValue)
                         budget_list.append(budget)
                     except ValueError:
-                        print("Invalid budget found. Exiting")                        
+                        print("Invalid budget found. Exiting")
+        if compare_to == 'nobidder' and no_bidder_budget is None:
+            print("nobidder selected as compared mode but no budget specified. Exiting")
+            sys.exit()
         if len(random_percentage_list) > 1:
             print("multiple random percentages have been selected. Considering Rs as the variable.")
             var = 'RS'
@@ -120,7 +163,10 @@ if __name__ == '__main__':
         elif len(budget_list) > 1:
             print("multiple budget values have been selected. Considering B as the variable.")
             var = 'B'
-        create_files(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var)
+        if compare_to == 'random':
+            create_files_random(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var)
+        elif compare_to == 'nobidder':
+            create_files_nobidder(vehicles, budget, vehicles_list, model, template, duration, random_percentage, random_percentage_list, budget_list, var, no_bidder_budget)
     except getopt.error as err:
         # output error, and return with an error code
         print(str(err))

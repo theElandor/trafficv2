@@ -5,7 +5,7 @@ import getopt
 import sys
 
 
-def plot(file_to_read, gran, zoom, mode):
+def plot(file_to_read, gran, zoom, mode, title):
     matplotlib.use("TkAgg")
     filename = file_to_read
     with open(filename) as f:
@@ -20,9 +20,10 @@ def plot(file_to_read, gran, zoom, mode):
                 chunk = []
         y = [s.mean(c) for c in blocks]
         x = [i for i in range(len(y))]
-        plt.title("{} plot".format(file_to_read[:-4]))
+        plt.title(title)
+        # plt.title("{} plot".format(file_to_read[:-4]))
         plt.xlabel("Set of {} function calls".format(str(gran)))
-        plt.ylabel("{} measured".format(file_to_read[:-4]))
+        plt.ylabel("{}".format(file_to_read[:-4]))
         plt.plot(x, y, mode)
         plt.show()
         # plt.savefig(name, dpi=300)
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     options = "hmo:"
 
     # Long options
-    long_options = ["help", "file=", "zoom=", "gran=", "mode="]
+    long_options = ["help", "file=", "zoom=", "gran=", "mode=", "title="]
     try:
         # Parsing argument
         arguments, values = getopt.getopt(argumentList, options, long_options)
@@ -55,6 +56,7 @@ if __name__ == '__main__':
                 print("--zoom=<zoom value> to specifiy zoom. default=1")
                 print("--gran=<gran value> to specifiy granularity value. default=100")
                 print("--mode=<mode> to specifiy plotting style. default=--bo")
+                print("--title=<mode> to specifiy plot title.")
                 break
             else:
                 if currentArgument in ("-f", "--file"):
@@ -69,8 +71,11 @@ if __name__ == '__main__':
                 elif currentArgument in ("-m", "--mode"):
                     print("applied granularity: {}".format(currentValue))
                     mode = currentValue
+                elif currentArgument in ("-t", "--title"):
+                    print("title: {}".format(currentValue))
+                    title = currentValue
         print("read file: {}, gran: {}, zoom:{}\n".format(file_to_read, str(gran), str(zoom)))
-        plot(file_to_read, gran, zoom, mode)
+        plot(file_to_read, gran, zoom, mode, title)
     except getopt.error as err:
         # output error, and return with an error code
         print(str(err))

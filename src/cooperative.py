@@ -9,58 +9,19 @@ class Cooperative(IntersectionManager):
         self.multiplier = extra_configs["multiplier"]
         self.congestion_rate = extra_configs["congestion_rate"]
         
-        """
-        enable self.load if you want to load a model from the
-        "models" directory. The model version is specified
-        in the bidder class (bidder.py file). The current
-        stable version of the model is named 'hope'
-        """
         self.load = settings['load']
         self.train = settings['train']
         
-        """
-        IMPORTANT:
-        simulationName is used to rename the output file. 'booster'
-        is related to simulations where the bidder is active.
-        'off' is used for the simulation used for comparison, so for
-        the random bidder or for the normal behaviour.
-        It is really important to use theese specific names or the
-        plotters will not be able to read the output files (XD).
-        """
         self.simulationName = settings['name']
-
-        """
-        simple saver is a configuration that never make sponsorships
-        and always bet simple_discount*bid money in auctions.
-        set self.simple_saver to true to enable it on the test veic.
-        """
         
         self.simple_saver = False
         self.simple_discount = 0.3
         self.evaluation = False
 
-        """
-        max_memory parameter has been used during training.
-        Not super usefull if you train for a reasonable amount
-        of ticks (like 200k). If the training lasts for long,
-        then it might be smart to set this parameter to
-        limit the memory size.
-        """
         self.max_memory = 400
-        
-        """
-        The tests used veic 74 as the test vehicle. To "install" the bidder
-        on a different vehicle just change the value of self.test_veic.
-        Right now the simulator does not support multiple test vehicles,
-        as they would require to either:
-        1) Keep in memory a different model for each one;
-        2) Keep in memory a single model for each test vehicle, but
-           in this case they would need to have the same route.
-        IMP
-        If you want to disable the bidder, please just set the variable like this:
-        self.test_veic = "?"
-        """
+
         self.test_veic = settings['TV']
+        
         """
         This parameter controls the importance of placing cheap bets.
         A value close to 0 will make the bidder receive more reward
@@ -69,6 +30,7 @@ class Cooperative(IntersectionManager):
         The stable model uses alpha = 0.3;
         """
         self.alpha = settings['alpha']
+        
         """
         self.freq is another hyperparameter. It controls after how
         many action steps the model should learn. If set to 1,
@@ -213,9 +175,6 @@ class Cooperative(IntersectionManager):
                         else:
                             print("Model is freezed, not updating")
         action = self.bidder.act(current_state_input_encoded)
-        # saving current state and current action as class attributes,
-        # so the next istance of the function call will be able to access
-        # those parameters in order to compute the reward.
         self.prev_state = current_state_input
         self.prev_action = action
         return action
@@ -251,11 +210,9 @@ class Cooperative(IntersectionManager):
                 current_state_input = np.array([current_state])
         for car in crossroad_stop_list:
             car_bid = int(car.makeBid())
-            if car.getID() == test_veic:
-                self.trained_veic = car
-                if self.simple_saver:
-                    car_bid = car_bid * self.simple_discount
-                else:  # in this case veic uses the bidder to predict the best reward
+            if car.getID() == test_veic:  # use bidder to predict optimal discount (or random discount)
+                self.trained_veic = car  # catches the test vehicle
+                if self.simulationName != "disabled":  # if bidder is disabled there are no discounts
                     bid_modifier = self.predict_bid(current_state_input)
                     discount = (bid_modifier / 10)  # discount will be between 0 and 1
                     car_bid = car_bid * discount  # apply discount to car bid
@@ -271,33 +228,26 @@ class Cooperative(IntersectionManager):
                     # tip = sp.getBudget()/sp.crossroad_counter before test veic bidded this way.
                     tip = sp.makeSponsor()
                     discounted_tip = tip  # if veic is not trained, then discounted_tip is the same as tip
-                    if sp.getID() == test_veic:
-                        if self.simple_saver:
-                            discounted_tip = 0
-                            # simlpe_saver does not tip during sponsorship
-                        else:  # in this case test veic2 predicts best bid
-                            with open("./encounters.txt", "a") as en:
-                                en.write(crossroad.name + "," + str(len(traffic_stop_list[car.getRoadID()]))+"\n")
-                                en.write(crossroad.name + "," + str(len(crossroad_stop_list))+"\n")
-                            sponsor_modifier = self.predict_bid(current_state_input)
-                            tip_discount = (sponsor_modifier / 10)
-                            discounted_tip = tip * tip_discount  # apply discount to tip
-                            print("Current state is: " + str(current_state))
+                    if sp.getID() == test_veic and self.simulationName != "disabled":
+                        with open("./encounters.txt", "a") as en:
+                            en.write(crossroad.name + "," + str(len(traffic_stop_list[car.getRoadID()]))+"\n")
+                            en.write(crossroad.name + "," + str(len(crossroad_stop_list))+"\n")
+                        sponsor_modifier = self.predict_bid(current_state_input)
+                        tip_discount = (sponsor_modifier / 10)
+                        discounted_tip = tip * tip_discount  # apply discount to tip
+                        print("Current state is: " + str(current_state))
                     sponsorship += discounted_tip  # add only discounted tip
                     sp.setBudget(sp.getBudget() - discounted_tip)  # decurt discounted tip
             car_bid += sponsorship
-            sponsors[car] = sponsorship            
-            log_print('bidSystem: vehicle {} made a bid of {}'.format(car.getID(), car_bid))
+            sponsors[car] = sponsorship
             if self.settings['E'] == 'y':
-                enhance = self.multiplier*math.log(len(traffic_stop_list[car.getRoadID()]) + 1) + 1 ## get num of cars in the same lane and apply formula.
+                enhance = self.multiplier*math.log(len(traffic_stop_list[car.getRoadID()]) + 1) + 1
             else:
                 enhance = 1
             total_bid = int(car_bid * enhance)
             bids.append([car, total_bid, car_bid, enhance])
-            log_print('bidSystem: vehicle {} has a total bid of {} (bid {}, enhancement {})'.format(car.getID(), total_bid, car_bid, enhance))
-
+    
         bids, winner, winner_total_bid, winner_bid, winner_enhance = self.sortBids(bids, sponsors)
-        log_print('bidSystem: vehicle {} pays {}'.format(winner.getID(), winner_bid - 1))
         # if winner is trained veic, then we update the amount of money spent and saved
         winner.setBudget(winner.getBudget() - winner_bid)
         # REDISTRIBUTE winning bid without sponsorship
