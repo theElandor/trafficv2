@@ -1,0 +1,50 @@
+Same as hopev4, the config file is below.
+Now each vehicle in the random pool is initialized
+with new parameters (beta and speed) each time
+he reroutes, so there is actual variability.
+If the performance is really bad, we might consider
+to reroute once each 5k iterations, to reduce the
+amount of randomness in traffic.
+
+
+# Standard configs
+model: Coop
+CP: owp
+MCA: 1
+E: y
+Bdn: b
+Rts: f
+RUNS: 1
+TV: 74
+
+# Simulation settings
+Vr: B
+Stp: 200000
+VS: 120
+UB: 7
+RS: 20
+
+
+# Startup configuration
+train: True
+load: False
+name: train
+MV: hopev4
+AI: 1
+
+#sponsorship policy
+B: 100
+Spn: 10
+betaL: 0.05
+betaU: 0.15
+betaR: 0.1
+
+# hyperparameters
+alpha: 0.3
+TF: 10
+UF: 10
+EXE: 1
+EVE: 0
+BS: 32
+G: 0.3
+

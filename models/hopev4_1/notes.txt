@@ -1,0 +1,5 @@
+Upgrade of modelV4, that was actually
+trained without variability.
+In this model the random pool size is 10%,
+meaning that at each reroute 10% of the vehicles
+will be re-initialized with random policies.

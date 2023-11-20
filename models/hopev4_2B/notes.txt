@@ -1,0 +1,5 @@
+model hopev4_2 look promising.
+It saves a ton of value, but
+sometimes the waiting times are a little high.
+I'll try to train the new model with a different
+alpha parameter.

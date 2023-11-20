@@ -9,11 +9,11 @@ RUNS: 1
 TV: 74
 
 # Simulation settings
-Vr: B
+Vr: VS
 Stp: 5000
 VS: 120
 UB: 7
-RS: 40
+RS: 20
 
 
 # Startup configuration
@@ -24,7 +24,7 @@ MV: hopev4
 AI: 2
 
 #sponsorship policy
-B: 120
+B: 100
 Spn: 10
 betaL: 0.05
 betaU: 0.15
