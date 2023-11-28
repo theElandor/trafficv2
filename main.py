@@ -46,6 +46,8 @@ def testSaveDir(settings):
     Function that checks if the folders where the output will be written exist.
     """
     var = settings['Vr']
+    if var == 'NBB':
+        var = 'B'
     folder_name = str(settings[var])
     model_version = settings['MV']
     simulation_index = str(settings['AI'])
@@ -125,6 +127,8 @@ def run(settings, model_chosen, chunk_name=0, time = datetime.now().strftime("%Y
         # of reroutes. This way we can compute the
         # average amount of money saved on each route.
         var = settings['Vr']
+        if var == 'NBB':
+            var = 'B'
         folder_name = str(settings[var])
         if model.test_veic != "?":
             with open("models/{}/compared_exp/average_{}T/{}/gained_{}.txt".format(settings['MV'], folder_name, str(settings['AI']), str(model.simulationName)), "w") as f:
@@ -156,6 +160,8 @@ def sim(configs, chunk_name=0, time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S
     file_name += '|{}'
     
     var = configs['Vr']
+    if var == 'NBB':
+        var = 'B'
     folder_name = str(configs[var])
     
     crossroad_vehicles.to_csv("./models/{}/compared_exp/average_{}T/{}/crossroad_{}.txt".format(configs['MV'], folder_name, str(configs['AI']), str(simulationName)),header=['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max'])
