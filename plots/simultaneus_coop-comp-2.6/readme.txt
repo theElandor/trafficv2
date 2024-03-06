@@ -1,3 +1,0 @@
-- enh multiplier = 2 always
-- 4 veic pass
-- simult. = True
