@@ -9,9 +9,9 @@ RUNS: 1
 TV: 74
 
 # Simulation settings
-Vr: NBB
+Vr: VS
 Stp: 5000
-VS: 120
+VS: 100
 UB: 7
 RS: 20
 
@@ -20,11 +20,11 @@ RS: 20
 train: False
 load: True
 name: disabled
-MV: hopev4_2
+MV: hopev4
 AI: 9
 
 #sponsorship policy
-B: 100
+B: 120
 Spn: 10
 betaL: 0.05
 betaU: 0.15

@@ -79,13 +79,13 @@ ax.bar_label(p, label_type='center', fontsize=font_size)
 p = ax.bar(ind + (2*width) + 2*offset, crossroad_c, width, bottom=traffic_c, yerr=errs_crossroad_c, label='standard bidder crossroad w.t.',color=colors['crossroad_c'])
 ax.bar_label(p,label_type='center', fontsize=font_size)
 
-ax.set_title('Waiting times based on number of vehicles', fontsize=22)
+ax.set_title("Waiting times based on test vehicle's max budget", fontsize=22)
 ax.set_xticks(ind + width + offset, labels = ['{}'.format(str(d)) for d in vars])
 
 ax.autoscale_view()
 
 ax.set_ylabel("waiting time", fontsize=18)
-ax.set_xlabel("number of vehicles", fontsize=18)
+ax.set_xlabel("max budget", fontsize=18)
 ax.legend(loc='upper left', fontsize=16)
 plt.ylim(0, 100)
 plt.savefig("output.png", dpi=500)
