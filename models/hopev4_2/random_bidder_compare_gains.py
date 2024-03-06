@@ -41,10 +41,10 @@ for attribute, measurement in means.items():
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
 ax.set_ylabel('% saved budget', fontsize=18)
-ax.set_xlabel('number of vehicles', fontsize=18)
-ax.set_title('% saved budget based on number of vehicles', fontsize=22)
+ax.set_xlabel('max budget', fontsize=18)
+ax.set_title("% saved budget based on test vehicle's max budget", fontsize=22)
 ax.set_xticks(x+width/2, labels = ['{}'.format(str(d)) for d in vars])
-ax.legend(loc='upper right', ncols=1, fontsize=18)
+ax.legend(loc='upper left', ncols=1, fontsize=18)
 ax.set_ylim(0, 100)
 plt.savefig("gains.png", dpi=500)
 plt.show()
