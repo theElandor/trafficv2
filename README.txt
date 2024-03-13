@@ -9,7 +9,7 @@
   create one!
 
 + Remember: please use the 3.9 version of Python, don't use python 3.10 as some things
-  could go wrong. You can use python3 to run the plotting scripts.
+  could go wrong. You can use python3.10 to run the plotting scripts.
 --------TESTING A MODEL PART1, SINGLE SIMULATION------------
 
 
