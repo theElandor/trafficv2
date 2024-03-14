@@ -1,10 +1,17 @@
 ------PRE-READ stuff---------
++ This simulator only works under Linux.
 + I will refer to elements in the appendix as [1], [2], ecc...
 + You will find messy code in this repo. There is still a lot of stuff to do:
   in general, the code needs to be cleaned and refactored.
+  When I first started to modify the original simulator I never thought that it could
+  become of public domain (or even published in a paper), that's why I didn't care to
+  much about making it other-humans-readable. I learned the lesson though: I'll try
+  to clean it up a little if I can find time between teaching and university.
+  In the meantime I am also writing this document to guide you through the project as
+  much as possible.
   Also the scripts can be improved and extended as far as functionalities are concerned.
   You will find more specific references to what can be improved while you read.
-+ Logs file are not mantained. During developement I preferred to use the console
++ Log files are not mantained. During developement I preferred to use the console
   and print stuff at runtime. A better debugger is needed. If you want, you can try to
   create one!
 
@@ -250,7 +257,7 @@ Let's say a couple of things in advance:
   be really expensive if the models are deep-learning models.
   One way to solve this is to change the neural network structure and make it lighter.
   It should be quite easy to do that: just take care of training another model with
-  the modified structure, keeping the same configuration file as hopev4-2.
+  the modified structure, keeping the same configuration file as hopev4_2.
   Another "not-so-crazy" idea is to implement Q-Learning instead of Deep-Q-Learning, so that you can use
   a simple 2D matrix to store learning information instead of a neural network. Read [3] for more details.
   
@@ -281,12 +288,15 @@ RUNS: number of runs for experiment. It's better
 	  parameter.
 TV: stands for "test vehicle", meaning the one on which
 	the bidder(either RL or random) will be mounted.
-	Only vehicle 74 has been tested.
+	Only vehicle 74 has been tested. Implementing
+	a simulation whith multiple test vehicles might be a good 
+	thing. Also testing different vehicles with different paths
+	is required.
 Vr: parameter automatically generated when using the
 	generate_config.py script. It indicates the
 	"variable" of the simulation. For example, if you
 	want to make experiments in which the number
-	og vehicles simulated varies, then this variable
+	of vehicles simulated varies, then this variable
 	will be set to "VS". This Vr variable will be used
 	to determine the "folder_name" parameter, which is
 	needed to determine the path in which the output file
