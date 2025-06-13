@@ -1,20 +1,9 @@
-------PRE-READ stuff---------
+------Introduction---------
 + This simulator only works under Linux.
 + I will refer to elements in the appendix as [1], [2], ecc...
-+ You will find messy code in this repo. There is still a lot of stuff to do:
-  in general, the code needs to be cleaned and refactored.
-  When I first started to modify the original simulator I never thought that it could
-  become of public domain (or even published in a paper), that's why I didn't care to
-  much about making it other-humans-readable. I learned the lesson though: I'll try
-  to clean it up a little if I can find time between teaching and university.
-  In the meantime I am also writing this document to guide you through the project as
-  much as possible.
-  Also the scripts can be improved and extended as far as functionalities are concerned.
-  You will find more specific references to what can be improved while you read.
 + Log files are not mantained. During developement I preferred to use the console
   and print stuff at runtime. A better debugger is needed. If you want, you can try to
   create one!
-
 + Remember: please use the 3.9 version of Python, don't use python 3.10 as some things
   could go wrong. You can use python3.10 to run the plotting scripts.
 --------TESTING A MODEL PART1, SINGLE SIMULATION------------
